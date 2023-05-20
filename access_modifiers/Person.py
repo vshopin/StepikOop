@@ -17,7 +17,6 @@ class Person:
     def __init__(self, person_name, person_surname):
         self.name = person_name
         self.surname = person_surname
-        self._fullname = person_name + " " + person_surname
 
     def get_name(self):
         return self._name
@@ -25,23 +24,23 @@ class Person:
     def get_surname(self):
         return self._surname
 
-    def get_fullname(self):
-        return self._fullname
-
     def set_name(self, new_name):
         self._name = new_name
 
     def set_surname(self, new_surname):
         self._surname = new_surname
 
+    def get_fullname(self):
+        return self._name + " " + self._surname
+
     def set_fullname(self, fullname):
-        self._fullname = fullname
+        self._fullname = " ".join(fullname.split())
         self._name = fullname.split()[0]
         self._surname = fullname.split()[1]
 
     name = property(get_name, set_name)
     surname = property(get_surname, set_surname)
-    fullname = property(get_fullname)
+    fullname = property(get_fullname, set_fullname)
 
 
 person = Person('Меган', 'Фокс')
