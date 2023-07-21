@@ -11,24 +11,28 @@ from functools import singledispatchmethod
 
 
 class Processor:
-    @singledispatchmethod
     @staticmethod
+    @singledispatchmethod
     def process(data):
         raise TypeError('Аргумент переданного типа не поддерживается')
 
+    @staticmethod
     @process.register(int)
     @process.register(float)
     def int_float_implementation(data):
         return data * 2
 
+    @staticmethod
     @process.register(str)
     def str_implementation(data):
         return data.upper()
 
+    @staticmethod
     @process.register(list)
     def list_implementation(data):
         return sorted(data)
 
+    @staticmethod
     @process.register(tuple)
     def tuple_implementation(data):
         return tuple(sorted(data))
